@@ -1,8 +1,14 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import BookViewSet
+from django.urls import path
+from rest_framework.urlpatterns import format_suffix_patterns
+from . import views
 
-router = DefaultRouter()
-router.register(r'books', BookViewSet)
+urlpatterns = [
+    path('book/', views.Book_list),
+    path('book/<int:pk>/', views.Book_detail),
+    path('member/', views.Member_list),
+    path('member/<int:pk>/', views.Member_detail),
+    path('borrow/', views.Borrow_list),
+    path('borrow/<int:pk>/', views.Borrow_detail),
+]
 
-urlpatterns = router.urls
+urlpatterns = format_suffix_patterns(urlpatterns)
